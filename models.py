@@ -1,3 +1,6 @@
+import pygame
+from visuals import *
+
 class Sprite:
 
     def __init__(self, x, y, image):
@@ -8,7 +11,7 @@ class Sprite:
 
 class Player(Sprite):
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, player_id, *args, **kwargs):
         self.player_id = player_id
         super().__init__(*args, **kwargs)
 
@@ -32,7 +35,7 @@ class Player(Sprite):
 
         @staticmethod
         def can_move(x, y):
-            return gamefield[x][y] == 0
+            return Visuals.gamefield[x][y] == 0
 
 
 

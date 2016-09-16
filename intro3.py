@@ -46,7 +46,7 @@ class Bird:  # represents the bird, not the game
 
 
 pygame.init()
-screen = pygame.display.set_mode((640, 400))
+screen = pygame.display.set_mode((60, 50))
 
 bird = Bird(0, 0)  # create an instance
 bird2 = Bird(60, 60)
