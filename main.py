@@ -2,6 +2,7 @@ from models import *
 import random
 
 pygame.init()
+pygame.mixer.init()
 
 game_exit = False
 width = 1170
@@ -23,11 +24,21 @@ def draw_gamefield():
     game_display.blit(player1.image, (player1.x*78, player1.y*78))
     game_display.blit(player2.image, (player2.x * 78, player2.y * 78))
 
+def play_blast():
+    blast = 'blast.wav'
+    key = pygame.key.get_pressed()
+    if key[pygame.K_b]:
+        pygame.mixer.music.load(blast)
+        pygame.mixer.music.play()
+        while pygame.mixer.music.get_busy():
+          pygame.time.Clock().tick(10)
+
 Visuals.game_init()
 
 while not game_exit:
     draw_gamefield()
     pygame.display.update()
+    play_blast()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             game_exit = True
