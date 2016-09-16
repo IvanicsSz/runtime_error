@@ -1,5 +1,5 @@
 import pygame
-from models import Sprite, Wall, Player, Bomb
+from models import *
 import random
 bg = pygame.image.load("sprites/bg.jpg")
 stone = pygame.image.load("sprites/stone.jpg")
@@ -11,6 +11,8 @@ bomb = pygame.image.load("sprites/bomb.png")
 class Visuals:
 
     gamefield = []
+    player1 = None
+    player2 = None
     for i in range(15):
         gamefield.append([0] * 13)
 
@@ -20,8 +22,8 @@ class Visuals:
             for j in range(13):
                 if i == 0 or i == 14 or j == 0 or j == 12 or (i % 2 == 0 and j % 2 == 0):
                     cls.gamefield[i][j] = Wall(x=i * 78, y=j * 78, image=stone, fix=True)
-        cls.gamefield[1][1] = Player(x=1 * 78, y=1 * 78, image=player_1, player_id=1)
-        cls.gamefield[13][11] = Player(x=13 * 78, y=11 * 78, image=player_2, player_id=2)
+        # cls.player1 = Player(x=1 * 78, y=1 * 78, image=player_1, player_id=1)
+        # cls.player2 = Player(x=13 * 78, y=11 * 78, image=player_2, player_id=2)
         for f, column in enumerate(cls.gamefield):
             for h, row in enumerate(column):
                 if not (row != 0 or (f == 2 and h == 1) or (f == 1 and h == 2) or (f == 12 and h == 11) or (
