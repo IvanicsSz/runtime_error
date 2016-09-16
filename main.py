@@ -1,5 +1,4 @@
 from models import *
-import numpy
 import random
 from visuals import Visuals
 

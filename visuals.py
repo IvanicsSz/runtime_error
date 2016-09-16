@@ -26,8 +26,8 @@ class Visuals:
         # cls.player2 = Player(x=13 * 78, y=11 * 78, image=player_2, player_id=2)
         for f, column in enumerate(cls.gamefield):
             for h, row in enumerate(column):
-                if not (row != 0 or (f == 2 and h == 1) or (f == 1 and h == 2) or (f == 12 and h == 11) or (
-                        f == 13 and h == 10)):
+                if not (row != 0 or (f == 1 and h == 1) or (f == 13 and h == 11) or
+                        (f == 2 and h == 1) or (f == 1 and h == 2) or (f == 12 and h == 11) or (f == 13 and h == 10)):
                     if random.choice([0, 1]):
                         cls.gamefield[f][h] = Wall(x=f * 78, y=h * 78, image=brick, fix=False)
 

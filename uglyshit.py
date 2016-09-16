@@ -103,21 +103,21 @@ def check_bombs():
 
 def explode(bomb):
     if bomb.x >= 1 and can_extend(x=bomb.x-1, y=bomb.y):
-        gamefield[bomb.x-1][bomb.y] == 0
+        gamefield[bomb.x-1][bomb.y] = 0
         if bomb.x >= 2 and can_extend(x=bomb.x-2, y=bomb.y):
-            gamefield[bomb.x-2][bomb.y] == 0
+            gamefield[bomb.x-2][bomb.y] = 0
     if bomb.x <= 13 and can_extend(x=bomb.x+1, y=bomb.y):
-        gamefield[bomb.x+1][bomb.y] == 0
+        gamefield[bomb.x+1][bomb.y] = 0
         if bomb.x <= 12 and can_extend(x=bomb.x+2, y=bomb.y):
-            gamefield[bomb.x+2][bomb.y] == 0
+            gamefield[bomb.x+2][bomb.y] = 0
     if bomb.y >= 1 and can_extend(x=bomb.x, y=bomb.y-1):
-        gamefield[bomb.x][bomb.y-1] == 0
+        gamefield[bomb.x][bomb.y-1] = 0
         if bomb.y >= 2 and can_extend(x=bomb.x, y=bomb.y-2):
-            gamefield[bomb.x][bomb.y-2] == 0
+            gamefield[bomb.x][bomb.y-2] = 0
     if bomb.y <= 11 and can_extend(x=bomb.x, y=bomb.y+1):
-        gamefield[bomb.x][bomb.y+1] == 0
+        gamefield[bomb.x][bomb.y+1] = 0
         if bomb.x <= 10 and can_extend(x=bomb.x, y=bomb.y+2):
-            gamefield[bomb.x][bomb.y+2] == 0
+            gamefield[bomb.x][bomb.y+2] = 0
 
 def can_extend(x, y):
     return gamefield[x][y] == 0 or not isinstance(gamefield[x][y], Wall) or not gamefield[x][y].fix
