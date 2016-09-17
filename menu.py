@@ -67,7 +67,7 @@ while not menu_exit:
 
     # menu_music.play()
     try:
-        if e.type == pygame.locals.JOYBUTTONDOWN:
+        if pygame.event.type == pygame.locals.JOYBUTTONDOWN:
             player1Button = player1_joystick.get_button(0)
             player2Button = player2_joystick.get_button(0)
             if player1Button > 0:

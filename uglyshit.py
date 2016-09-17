@@ -76,7 +76,7 @@ def draw_gamefield():
 
 def handle_joystick():
     try:
-        if e.type == pygame.locals.JOYAXISMOTION:
+        if pygame.event.type == pygame.locals.JOYAXISMOTION:
             player1jx, player1jy = player1_joystick.get_axis(0), player1_joystick.get_axis(1)
             if player1jy > 0 and not move_cd(players[0]):
                 if can_move(x=players[0].x, y=players[0].y+1):
@@ -111,7 +111,7 @@ def handle_joystick():
                 if can_move(x=players[1].x+1, y=players[1].y):
                     players[1].x += 1
                     players[1].move_cd = pygame.time.get_ticks()
-        if e.type == pygame.locals.JOYBUTTONDOWN:
+        if pygame.event.type == pygame.locals.JOYBUTTONDOWN:
             player1Button = player1_joystick.get_button(0)
             if player1Button > 0 and not bombs[0].active:
                 plant_bomb(x=players[0].x, y=players[0].y, player=0)
