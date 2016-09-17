@@ -2,8 +2,20 @@ import pygame
 from models import *
 import random
 
-pygame.init()
+
 pygame.mixer.init()
+try:
+    pygame.joystick.init()
+    joysticks = [pygame.joystick.Joystick(x) for x in range(pygame.joystick.get_count())]
+    joysticks[0].init()
+    joysticks[1].init()
+    player1_joystick = joysticks[0]
+    player2_joystick = joysticks[1]
+except IndexError:
+    player1_joystick = None
+    player2_joystick = None
+
+
 game_exit = False
 width = 1170
 height = 1014
@@ -20,12 +32,12 @@ fire = pygame.image.load("sprites/fire.jpg")
 gamefield = []
 for i in range(15):
     gamefield.append([0] * 13)
-players = []
-players.append(Player(x=1, y=1, image=player_1))
-players.append(Player(x=13, y=11, image=player_2))
-bombs = []
-bombs.append(Bomb(x=0, y=0, image=bomb))
-bombs.append(Bomb(x=0, y=0, image=bomb))
+    players = []
+    players.append(Player(x=1, y=1, image=player_1))
+    players.append(Player(x=13, y=11, image=player_2))
+    bombs = []
+    bombs.append(Bomb(x=0, y=0, image=bomb))
+    bombs.append(Bomb(x=0, y=0, image=bomb))
 
 
 def game_init():
@@ -58,6 +70,54 @@ def draw_gamefield():
     for i in bombs:
         if i.active:
             game_display.blit(i.image, (i.x*78, i.y*78))
+
+
+def handle_joystick():
+    try:
+        if e.type == pygame.locals.JOYAXISMOTION:
+            player1jx, player1jy = player1_joystick.get_axis(0), player1_joystick.get_axis(1)
+            if player1jy > 0 and not move_cd(players[0]):
+                if can_move(x=players[0].x, y=players[0].y+1):
+                    players[0].y += 1
+                    players[0].move_cd = pygame.time.get_ticks()
+            elif player1jy < 0 and not move_cd(players[0]):
+                if can_move(x=players[0].x, y=players[0].y-1):
+                    players[0].y -= 1
+                    players[0].move_cd = pygame.time.get_ticks()
+            if player1jx < 0 and not move_cd(players[0]):
+                if can_move(x=players[0].x-1, y=players[0].y):
+                    players[0].x -= 1
+                    players[0].move_cd = pygame.time.get_ticks()
+            elif player1jx > 0 and not move_cd(players[0]):
+                if can_move(x=players[0].x+1, y=players[0].y):
+                    players[0].x += 1
+                    players[0].move_cd = pygame.time.get_ticks()
+            player2jx, player2jy = player2_joystick.get_axis(0), player2_joystick.get_axis(1)
+            if player2jy > 0 and not move_cd(players[1]):
+                if can_move(x=players[1].x, y=players[1].y+1):
+                    players[1].y += 1
+                    players[1].move_cd = pygame.time.get_ticks()
+            elif player2jy < 0 and not move_cd(players[1]):
+                if can_move(x=players[1].x, y=players[1].y-1):
+                    players[1].y -= 1
+                    players[0].move_cd = pygame.time.get_ticks()
+            if player2jx < 0 and not move_cd(players[1]):
+                if can_move(x=players[1].x-1, y=players[1].y):
+                    players[1].x -= 1
+                    players[1].move_cd = pygame.time.get_ticks()
+            elif player2jx > 0 and not move_cd(players[1]):
+                if can_move(x=players[1].x+1, y=players[1].y):
+                    players[1].x += 1
+                    players[1].move_cd = pygame.time.get_ticks()
+        if e.type == pygame.locals.JOYBUTTONDOWN:
+            player1Button = player1_joystick.get_button(0)
+            if player1Button > 0 and not bombs[0].active:
+                plant_bomb(x=players[0].x, y=players[0].y, player=0)
+            player2Button = player2_joystick.get_button(0)
+            if player2Button > 0 and not bombs[1].active:
+                plant_bomb(x=players[1].x, y=players[1].y, player=1)
+    except:
+           pass
 
 
 def handle_keys():
@@ -174,18 +234,19 @@ def play_blast():
 
 
 game_display = pygame.display.set_mode((width, height))
-pygame.display.set_caption('BomberMan - Jungle ed.')
 
 
-game_init()
-while not game_exit:
-    draw_gamefield()
-    check_bombs()
-    pygame.display.update()
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            game_exit = True
-    handle_keys()
+def main():
+    global game_exit
+    game_init()
+    while not game_exit and all([i.alive for i in players]):
+        draw_gamefield()
+        check_bombs()
+        pygame.display.update()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                game_exit = True
+        handle_keys()
 
 
-pygame.quit()
+# pygame.quit()
