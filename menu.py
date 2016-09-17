@@ -67,7 +67,7 @@ while not menu_exit:
 
     for event in pygame.event.get():
         if event.type == pygame.JOYBUTTONDOWN:
-            # menu_music.play()Ű
+            # menu_music.play()
             print("mukszik")
             if player1_joystick.get_button(0):
                 # menu_music.fadeout(500)
