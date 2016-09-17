@@ -11,7 +11,7 @@ racoon.append(pygame.image.load("sprites/menuracoon2.png"))
 panda = []
 panda.append(pygame.image.load("sprites/menupanda.png"))
 panda.append(pygame.image.load("sprites/menupanda2.png"))
-menu_music = pygame.mixer.Sound('menu.ogg')
+# menu_music = pygame.mixer.Sound('menu.ogg')
 try:
     pygame.joystick.init()
     joysticks = [pygame.joystick.Joystick(x) for x in range(pygame.joystick.get_count())]
@@ -65,16 +65,18 @@ while not menu_exit:
     game_display.blit(show_panda, picpos)
     pygame.display.update()
 
-    menu_music.play()
+    # menu_music.play()
     try:
         if e.type == pygame.locals.JOYBUTTONDOWN:
             player1Button = player1_joystick.get_button(0)
             player2Button = player2_joystick.get_button(0)
             if player1Button > 0:
-                menu_music.fadeout(500)
+                # menu_music.fadeout(500)
                 uglyshit.main()
             elif player2Button > 0:
                 menu_exit = True
+    except:
+        pass
 
     '''key = pygame.key.get_pressed()
     menu_music.play()

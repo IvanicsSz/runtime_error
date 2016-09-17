@@ -27,7 +27,7 @@ player_1 = pygame.image.load("sprites/hit1.png")
 player_2 = pygame.image.load("sprites/hit1.png")
 bomb = pygame.image.load("sprites/bomb.png")
 fire = pygame.image.load("sprites/fire.jpg")
-bg_music = pygame.mixer.Sound('jungle.ogg')
+# bg_music = pygame.mixer.Sound('jungle.ogg')
 
 
 gamefield = []
@@ -182,7 +182,7 @@ def check_bombs():
 
 
 def explode(bomb):
-    play_blast()
+    # play_blast()
     gamefield[bomb.x][bomb.y] = Fire(x=bomb.x, y=bomb.y, image=fire, timer=pygame.time.get_ticks())
     hit_player(x=bomb.x, y=bomb.y)
     if bomb.x >= 1 and can_extend(x=bomb.x-1, y=bomb.y):
@@ -245,7 +245,7 @@ def main():
     global bombs
     game_init()
     while not game_exit and all([i.alive for i in players]):
-        bg_music.play()
+        # bg_music.play()
         draw_gamefield()
         check_bombs()
         pygame.display.update()
@@ -256,7 +256,10 @@ def main():
     bombs = []
     players = []
     gamefield = []
-    bg_music.fadeout(500)
+    # bg_music.fadeout(500)
 
+
+if __name__ == "__main__":
+    main()
 
 # pygame.quit()
