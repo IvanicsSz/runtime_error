@@ -76,50 +76,51 @@ def draw_gamefield():
 
 def handle_joystick():
     try:
-        if pygame.event.type == pygame.locals.JOYAXISMOTION:
-            player1jx, player1jy = player1_joystick.get_axis(0), player1_joystick.get_axis(1)
-            if player1jy > 0 and not move_cd(players[0]):
-                if can_move(x=players[0].x, y=players[0].y+1):
-                    players[0].y += 1
-                    players[0].move_cd = pygame.time.get_ticks()
-            elif player1jy < 0 and not move_cd(players[0]):
-                if can_move(x=players[0].x, y=players[0].y-1):
-                    players[0].y -= 1
-                    players[0].move_cd = pygame.time.get_ticks()
-            if player1jx < 0 and not move_cd(players[0]):
-                if can_move(x=players[0].x-1, y=players[0].y):
-                    players[0].x -= 1
-                    players[0].move_cd = pygame.time.get_ticks()
-            elif player1jx > 0 and not move_cd(players[0]):
-                if can_move(x=players[0].x+1, y=players[0].y):
-                    players[0].x += 1
-                    players[0].move_cd = pygame.time.get_ticks()
-            player2jx, player2jy = player2_joystick.get_axis(0), player2_joystick.get_axis(1)
-            if player2jy > 0 and not move_cd(players[1]):
-                if can_move(x=players[1].x, y=players[1].y+1):
-                    players[1].y += 1
-                    players[1].move_cd = pygame.time.get_ticks()
-            elif player2jy < 0 and not move_cd(players[1]):
-                if can_move(x=players[1].x, y=players[1].y-1):
-                    players[1].y -= 1
-                    players[0].move_cd = pygame.time.get_ticks()
-            if player2jx < 0 and not move_cd(players[1]):
-                if can_move(x=players[1].x-1, y=players[1].y):
-                    players[1].x -= 1
-                    players[1].move_cd = pygame.time.get_ticks()
-            elif player2jx > 0 and not move_cd(players[1]):
-                if can_move(x=players[1].x+1, y=players[1].y):
-                    players[1].x += 1
-                    players[1].move_cd = pygame.time.get_ticks()
-        if pygame.event.type == pygame.locals.JOYBUTTONDOWN:
-            player1Button = player1_joystick.get_button(0)
-            if player1Button > 0 and not bombs[0].active:
-                plant_bomb(x=players[0].x, y=players[0].y, player=0)
-            player2Button = player2_joystick.get_button(0)
-            if player2Button > 0 and not bombs[1].active:
-                plant_bomb(x=players[1].x, y=players[1].y, player=1)
+        for e in pygame.event.get():
+            if e.type == pygame.locals.JOYAXISMOTION:
+                player1jx, player1jy = player1_joystick.get_axis(0), player1_joystick.get_axis(1)
+                if player1jy > 0 and not move_cd(players[0]):
+                    if can_move(x=players[0].x, y=players[0].y+1):
+                        players[0].y += 1
+                        players[0].move_cd = pygame.time.get_ticks()
+                elif player1jy < 0 and not move_cd(players[0]):
+                    if can_move(x=players[0].x, y=players[0].y-1):
+                        players[0].y -= 1
+                        players[0].move_cd = pygame.time.get_ticks()
+                if player1jx < 0 and not move_cd(players[0]):
+                    if can_move(x=players[0].x-1, y=players[0].y):
+                        players[0].x -= 1
+                        players[0].move_cd = pygame.time.get_ticks()
+                elif player1jx > 0 and not move_cd(players[0]):
+                    if can_move(x=players[0].x+1, y=players[0].y):
+                        players[0].x += 1
+                        players[0].move_cd = pygame.time.get_ticks()
+                player2jx, player2jy = player2_joystick.get_axis(0), player2_joystick.get_axis(1)
+                if player2jy > 0 and not move_cd(players[1]):
+                    if can_move(x=players[1].x, y=players[1].y+1):
+                        players[1].y += 1
+                        players[1].move_cd = pygame.time.get_ticks()
+                elif player2jy < 0 and not move_cd(players[1]):
+                    if can_move(x=players[1].x, y=players[1].y-1):
+                        players[1].y -= 1
+                        players[0].move_cd = pygame.time.get_ticks()
+                if player2jx < 0 and not move_cd(players[1]):
+                    if can_move(x=players[1].x-1, y=players[1].y):
+                        players[1].x -= 1
+                        players[1].move_cd = pygame.time.get_ticks()
+                elif player2jx > 0 and not move_cd(players[1]):
+                    if can_move(x=players[1].x+1, y=players[1].y):
+                        players[1].x += 1
+                        players[1].move_cd = pygame.time.get_ticks()
+            if e.type == pygame.locals.JOYBUTTONDOWN:
+                player1Button = player1_joystick.get_button(0)
+                if player1Button > 0 and not bombs[0].active:
+                    plant_bomb(x=players[0].x, y=players[0].y, player=0)
+                player2Button = player2_joystick.get_button(0)
+                if player2Button > 0 and not bombs[1].active:
+                    plant_bomb(x=players[1].x, y=players[1].y, player=1)
     except:
-           pass
+        pass
 
 
 def handle_keys():

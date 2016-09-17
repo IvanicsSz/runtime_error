@@ -67,14 +67,15 @@ while not menu_exit:
 
     # menu_music.play()
     try:
-        if pygame.event.type == pygame.locals.JOYBUTTONDOWN:
-            player1Button = player1_joystick.get_button(0)
-            player2Button = player2_joystick.get_button(0)
-            if player1Button > 0:
-                # menu_music.fadeout(500)
-                uglyshit.main()
-            elif player2Button > 0:
-                menu_exit = True
+        for e in pygame.event.get():
+            if e.type == pygame.locals.JOYBUTTONDOWN:
+                player1Button = player1_joystick.get_button(0)
+                player2Button = player2_joystick.get_button(0)
+                if player1Button > 0:
+                    # menu_music.fadeout(500)
+                    uglyshit.main()
+                elif player2Button > 0:
+                    menu_exit = True
     except:
         pass
 
