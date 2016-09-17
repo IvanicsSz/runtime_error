@@ -245,7 +245,7 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 game_exit = True
-            elif event.type == pygame.locals.JOYAXISMOTION:
+            elif event.type == pygame.JOYAXISMOTION:
                 handle_joystick()
     bombs = []
     players = []
