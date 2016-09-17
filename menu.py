@@ -71,7 +71,7 @@ while not menu_exit:
             if player1_joystick.get_button(0):
                 # menu_music.fadeout(500)
                 uglyshit.main()
-            elif player2_joystick.get_button(0):
+            elif player2_joystick.get_button(10):
                 menu_exit = True
 
     # '''key = pygame.key.get_pressed()
