@@ -65,28 +65,24 @@ while not menu_exit:
     game_display.blit(show_panda, picpos)
     pygame.display.update()
 
-    # menu_music.play()
-    try:
-        for e in pygame.event.get():
-            if e.type == pygame.locals.JOYBUTTONDOWN:
-                player1Button = player1_joystick.get_button(0)
-                player2Button = player2_joystick.get_button(0)
-                if player1Button:
-                    # menu_music.fadeout(500)
-                    uglyshit.main()
-                elif player2Button:
-                    menu_exit = True
-    except:
-        pass
-
-    '''key = pygame.key.get_pressed()
-    # menu_music.play()
-    if key[pygame.K_SPACE]:
-        # menu_music.fadeout(500)
-        uglyshit.main()
     for event in pygame.event.get():
-        if event.type == pygame.QUIT or key[pygame.K_ESCAPE]:
-            menu_exit = True'''
+        if event.type == pygame.JOYBUTTONDOWN:
+            # menu_music.play()Ű
+            print("mukszik")
+            if player1_joystick.get_button(0):
+                # menu_music.fadeout(500)
+                uglyshit.main()
+            elif player2_joystick.get_button(0):
+                menu_exit = True
+
+    # '''key = pygame.key.get_pressed()
+    # # menu_music.play()
+    # if key[pygame.K_SPACE]:
+    #     # menu_music.fadeout(500)
+    #     uglyshit.main()
+    # for event in pygame.event.get():
+    #     if event.type == pygame.QUIT or key[pygame.K_ESCAPE]:
+    #         menu_exit = True'''
 
     pygame.time.delay(200)
 
