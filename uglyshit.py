@@ -114,10 +114,10 @@ def handle_joystick():
                         players[1].move_cd = pygame.time.get_ticks()
             if e.type == pygame.locals.JOYBUTTONDOWN:
                 player1Button = player1_joystick.get_button(0)
-                if player1Button > 0 and not bombs[0].active:
+                if player1Button and not bombs[0].active:
                     plant_bomb(x=players[0].x, y=players[0].y, player=0)
                 player2Button = player2_joystick.get_button(0)
-                if player2Button > 0 and not bombs[1].active:
+                if player2Button and not bombs[1].active:
                     plant_bomb(x=players[1].x, y=players[1].y, player=1)
     except:
         pass
@@ -253,7 +253,7 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 game_exit = True
-        handle_keys()
+        handle_joystick()
     bombs = []
     players = []
     gamefield = []
