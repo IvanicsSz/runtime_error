@@ -12,6 +12,16 @@ panda = []
 panda.append(pygame.image.load("sprites/menupanda.png"))
 panda.append(pygame.image.load("sprites/menupanda2.png"))
 menu_music = pygame.mixer.Sound('menu.ogg')
+try:
+    pygame.joystick.init()
+    joysticks = [pygame.joystick.Joystick(x) for x in range(pygame.joystick.get_count())]
+    joysticks[0].init()
+    joysticks[1].init()
+    player1_joystick = joysticks[0]
+    player2_joystick = joysticks[1]
+except IndexError:
+    player1_joystick = None
+    player2_joystick = None
 
 
 i = 0
@@ -55,14 +65,25 @@ while not menu_exit:
     game_display.blit(show_panda, picpos)
     pygame.display.update()
 
-    key = pygame.key.get_pressed()
+    menu_music.play()
+    try:
+        if e.type == pygame.locals.JOYBUTTONDOWN:
+            player1Button = player1_joystick.get_button(0)
+            player2Button = player2_joystick.get_button(0)
+            if player1Button > 0:
+                menu_music.fadeout(500)
+                uglyshit.main()
+            elif player2Button > 0:
+                menu_exit = True
+
+    '''key = pygame.key.get_pressed()
     menu_music.play()
     if key[pygame.K_SPACE]:
         menu_music.fadeout(500)
         uglyshit.main()
     for event in pygame.event.get():
         if event.type == pygame.QUIT or key[pygame.K_ESCAPE]:
-            menu_exit = True
+            menu_exit = True'''
 
     pygame.time.delay(200)
 
