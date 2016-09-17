@@ -23,29 +23,29 @@ except IndexError:
     player1_joystick = None
     player2_joystick = None
 
-
+font_color = (135,206,250)
 i = 0
 while not menu_exit:
     game_display = pygame.display.set_mode((1170, 1014))
     pygame.display.set_caption('BomberMan - Panda VS Racoon')
     game_display.blit(bg, (0, 0))
-    font = pygame.font.SysFont('arial', 50)
-    text = font.render("Welcome to BomBEARman", 1, (0, 255, 0))
+    font = pygame.font.SysFont('arial', 50, bold=True)
+    text = font.render("Welcome to BomBEARman", 1, font_color)
     textpos = text.get_rect()
     textpos.centerx = game_display.get_rect().centerx
     textpos.centery = game_display.get_rect().centery - 50
     game_display.blit(text, textpos)
-    text2 = font.render("Panda VS Racoon", 1, (0, 255, 0))
+    text2 = font.render("Panda VS Racoon", 1, font_color)
     textpos = text2.get_rect()
     textpos.centerx = game_display.get_rect().centerx
     textpos.centery = game_display.get_rect().centery
     game_display.blit(text2, textpos)
-    text3 = font.render("Press BLUE 0 to start", 1, (0, 255, 0))
+    text3 = font.render("Press BLUE 0 to start", 1, font_color)
     textpos = text3.get_rect()
     textpos.centerx = game_display.get_rect().centerx
     textpos.centery = game_display.get_rect().centery + 50
     game_display.blit(text3, textpos)
-    text4 = font.render("or RED 10 to quit", 1, (0, 255, 0))
+    text4 = font.render("or RED 10 to quit", 1, font_color)
     textpos = text4.get_rect()
     textpos.centerx = game_display.get_rect().centerx
     textpos.centery = game_display.get_rect().centery + 100
