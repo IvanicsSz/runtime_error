@@ -11,7 +11,7 @@ racoon.append(pygame.image.load("sprites/menuracoon2.png"))
 panda = []
 panda.append(pygame.image.load("sprites/menupanda.png"))
 panda.append(pygame.image.load("sprites/menupanda2.png"))
-# menu_music = pygame.mixer.Sound('menu.ogg')
+menu_music = pygame.mixer.Sound('menu0.ogg')
 try:
     pygame.joystick.init()
     joysticks = [pygame.joystick.Joystick(x) for x in range(pygame.joystick.get_count())]
@@ -40,12 +40,12 @@ while not menu_exit:
     textpos.centerx = game_display.get_rect().centerx
     textpos.centery = game_display.get_rect().centery
     game_display.blit(text2, textpos)
-    text3 = font.render("Press SPACE to start", 1, (0, 255, 0))
+    text3 = font.render("Press BLUE 0 to start", 1, (0, 255, 0))
     textpos = text3.get_rect()
     textpos.centerx = game_display.get_rect().centerx
     textpos.centery = game_display.get_rect().centery + 50
     game_display.blit(text3, textpos)
-    text4 = font.render("or ESCAPE to quit", 1, (0, 255, 0))
+    text4 = font.render("or RED 10 to quit", 1, (0, 255, 0))
     textpos = text4.get_rect()
     textpos.centerx = game_display.get_rect().centerx
     textpos.centery = game_display.get_rect().centery + 100
@@ -67,9 +67,9 @@ while not menu_exit:
 
     for event in pygame.event.get():
         if event.type == pygame.JOYBUTTONDOWN:
-            # menu_music.play()
+            menu_music.play()
             if player1_joystick.get_button(0):
-                # menu_music.fadeout(500)
+                menu_music.fadeout(500)
                 uglyshit.main()
             elif player2_joystick.get_button(10):
                 menu_exit = True
