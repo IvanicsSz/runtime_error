@@ -11,9 +11,17 @@ class Sprite:
 
 class Player(Sprite):
 
-    def __init__(self, player_id, *args, **kwargs):
-        self.player_id = player_id
+    def __init__(self, alive=True, move_cd=0, *args, **kwargs):
+        self.alive = alive
+        self.move_cd = move_cd
         super().__init__(*args, **kwargs)
+
+
+class Fire(Sprite):
+
+    def __init__(self, timer, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.timer = timer
 
 
 class Bomb(Sprite):
