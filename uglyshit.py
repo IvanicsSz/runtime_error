@@ -27,20 +27,22 @@ player_1 = pygame.image.load("sprites/hit1.png")
 player_2 = pygame.image.load("sprites/hit1.png")
 bomb = pygame.image.load("sprites/bomb.png")
 fire = pygame.image.load("sprites/fire.jpg")
+bg_music = pygame.mixer.Sound('jungle.ogg')
 
 
 gamefield = []
-for i in range(15):
-    gamefield.append([0] * 13)
-    players = []
-    players.append(Player(x=1, y=1, image=player_1))
-    players.append(Player(x=13, y=11, image=player_2))
-    bombs = []
-    bombs.append(Bomb(x=0, y=0, image=bomb))
-    bombs.append(Bomb(x=0, y=0, image=bomb))
+players = []
+bombs = []
 
 
 def game_init():
+    global gamefield
+    global players
+    global bombs
+    for i in range(15):
+        gamefield.append([0] * 13)
+    players = [Player(x=1, y=1, image=player_1), Player(x=13, y=11, image=player_2)]
+    bombs = [Bomb(x=0, y=0, image=bomb), Bomb(x=0, y=0, image=bomb)]
     for i in range(15):
         for j in range(13):
             if i == 0 or i == 14 or j == 0 or j == 12 or (i % 2 == 0 and j % 2 == 0):
@@ -238,8 +240,12 @@ game_display = pygame.display.set_mode((width, height))
 
 def main():
     global game_exit
+    global gamefield
+    global players
+    global bombs
     game_init()
     while not game_exit and all([i.alive for i in players]):
+        bg_music.play()
         draw_gamefield()
         check_bombs()
         pygame.display.update()
@@ -247,6 +253,10 @@ def main():
             if event.type == pygame.QUIT:
                 game_exit = True
         handle_keys()
+    bombs = []
+    players = []
+    gamefield = []
+    bg_music.fadeout(500)
 
 
 # pygame.quit()

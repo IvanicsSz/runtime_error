@@ -11,6 +11,8 @@ racoon.append(pygame.image.load("sprites/menuracoon2.png"))
 panda = []
 panda.append(pygame.image.load("sprites/menupanda.png"))
 panda.append(pygame.image.load("sprites/menupanda2.png"))
+menu_music = pygame.mixer.Sound('menu.ogg')
+
 
 i = 0
 while not menu_exit:
@@ -52,15 +54,17 @@ while not menu_exit:
     picpos.centery = game_display.get_rect().centery
     game_display.blit(show_panda, picpos)
     pygame.display.update()
-    pygame.time.delay(200)
 
     key = pygame.key.get_pressed()
+    menu_music.play()
+    if key[pygame.K_SPACE]:
+        menu_music.fadeout(500)
+        uglyshit.main()
     for event in pygame.event.get():
-        if key[pygame.K_SPACE]:
-            uglyshit.main()
-        elif event.type == pygame.QUIT or key[pygame.K_ESCAPE]:
+        if event.type == pygame.QUIT or key[pygame.K_ESCAPE]:
             menu_exit = True
 
+    pygame.time.delay(200)
 
 
 pygame.quit()
