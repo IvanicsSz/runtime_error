@@ -247,10 +247,20 @@ def main():
                 game_exit = True
             elif event.type == pygame.JOYAXISMOTION:
                 handle_joystick()
+    draw_gamefield()
+    font = pygame.font.SysFont('arial', 50, bold=True)
+    winner = "Racoon" if players[0].alive else "Panda"
+    text = font.render("The winner is: {}".format(winner), 1, (135,206,250))
+    textpos = text.get_rect()
+    textpos.centerx = game_display.get_rect().centerx
+    textpos.centery = game_display.get_rect().centery
+    game_display.blit(text, textpos)
+    pygame.display.update()
+    bg_music.fadeout(500)
+    pygame.time.delay(800)
     bombs = []
     players = []
     gamefield = []
-    bg_music.fadeout(500)
 
 
 if __name__ == "__main__":

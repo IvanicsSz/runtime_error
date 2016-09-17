@@ -74,16 +74,16 @@ while not menu_exit:
             elif player2_joystick.get_button(10):
                 menu_exit = True
 
-    # '''key = pygame.key.get_pressed()
-    # # menu_music.play()
+    # key = pygame.key.get_pressed()
+    # # # menu_music.play()
     # if key[pygame.K_SPACE]:
-    #     # menu_music.fadeout(500)
+    # #     # menu_music.fadeout(500)
     #     uglyshit.main()
     # for event in pygame.event.get():
     #     if event.type == pygame.QUIT or key[pygame.K_ESCAPE]:
-    #         menu_exit = True'''
-
-    pygame.time.delay(200)
+    #         menu_exit = True
+    #
+    # pygame.time.delay(200)
 
 
 pygame.quit()
