@@ -40,7 +40,7 @@ while not menu_exit:
     textpos.centerx = game_display.get_rect().centerx
     textpos.centery = game_display.get_rect().centery
     game_display.blit(text2, textpos)
-    text3 = font.render("Press BLUE 0 to start", 1, font_color)
+    text3 = font.render("Press BLUE 10 to start", 1, font_color)
     textpos = text3.get_rect()
     textpos.centerx = game_display.get_rect().centerx
     textpos.centery = game_display.get_rect().centery + 50
@@ -68,7 +68,7 @@ while not menu_exit:
     for event in pygame.event.get():
         if event.type == pygame.JOYBUTTONDOWN:
             menu_music.play()
-            if player1_joystick.get_button(0):
+            if player1_joystick.get_button(10):
                 menu_music.fadeout(500)
                 uglyshit.main()
             elif player2_joystick.get_button(10):
