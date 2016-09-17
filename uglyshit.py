@@ -141,7 +141,7 @@ def handle_keys():
     elif key[pygame.K_w] and not move_cd(players[1]):
         if can_move(x=players[1].x, y=players[1].y-1):
             players[1].y -= 1
-            players[0].move_cd = pygame.time.get_ticks()
+            players[1].move_cd = pygame.time.get_ticks()
     if key[pygame.K_a] and not move_cd(players[1]):
         if can_move(x=players[1].x-1, y=players[1].y):
             players[1].x -= 1
